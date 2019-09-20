@@ -1,0 +1,1 @@
+data class Obstacle(var damage: Int, var position: Position = Position())
