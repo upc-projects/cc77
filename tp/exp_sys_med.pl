@@ -2,10 +2,10 @@
 
 go:-
 hypothesis(Disease),
-write('I believe that the patient have'),
+write('I believe that the patient have => '),
 write(Disease),
 nl,
-write('TAKE CARE '),
+write('TAKE CARE :)'),
 undo.
 
 /*Hypothesis that should be tested*/
@@ -127,7 +127,8 @@ true ;
 (no(S)
 ->
 fail ;
-ask(S))).
+ask(S))
+).
 /* undo all yes/no assertions*/
 undo :- retract(yes(_)),fail.
 undo :- retract(no(_)),fail.
