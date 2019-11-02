@@ -106,17 +106,7 @@ nl,
 write('Please do not sleep in open air and cover your full skin Because'),
 nl.
 
-/* how to ask questions */
-ask(Question) :-
-write('Does the patient have following symptom:'),
-write(Question),
-write('? '),
-read(Response),
-nl,
-( (Response == yes ; Response == y)
-->
-assert(yes(Question)) ;
-assert(no(Question)), fail).
+
 
 :- dynamic yes/1,no/1.
 /*How to verify something */
@@ -129,9 +119,23 @@ true ;
 fail ;
 ask(S))
 ).
+
 /* undo all yes/no assertions*/
 undo :- retract(yes(_)),fail.
 undo :- retract(no(_)),fail.
 undo.
+
+/* how to ask questions */
+ask(Question) :-
+    write('Does the patient have following symptom:'),
+    write(Question),
+    write('? '),
+    read(Response),
+    nl,
+    ( (Response == yes ; Response == y)
+    ->
+    assert(yes(Question)) ;
+    assert(no(Question)), fail).
+
 
 :- go.
